@@ -15,5 +15,6 @@ module.exports = {
     },
     'gatsby-plugin-mdx',
     'gatsby-plugin-flow',
+    `gatsby-plugin-material-ui`,
   ],
 }

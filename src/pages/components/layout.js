@@ -1,15 +1,32 @@
 import React from 'react'
-import { Link, useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
+import Container from '@material-ui/core/Container'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
+import CssBaseline from '@material-ui/core/CssBaseline'
 import {
-  container,
-  heading,
-  navLinks,
-  navLinkItem,
-  navLinkText,
-  siteTitle,
-} from './layout.module.css'
+  createTheme,
+  ThemeProvider,
+  makeStyles,
+} from '@material-ui/core/styles'
+import BlogMenu from './subcomponents/BlogMenu'
+
+const theme = createTheme({
+  shadows: ['none'],
+  palette: {
+    type: 'dark',
+  },
+})
+
+const useStyles = makeStyles((theme) => ({
+  paperContainer: {
+    padding: theme.spacing(2),
+  },
+}))
 
 const Layout = ({ pageTitle, children }) => {
+  const classes = useStyles()
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -22,33 +39,21 @@ const Layout = ({ pageTitle, children }) => {
 
   const title = data.site.siteMetadata.title
   return (
-    <div className={container}>
-      <title>{title}</title>
-      <header className={siteTitle}>{title}</header>
-      <nav>
-        <ul className={navLinks}>
-          <li className={navLinkItem}>
-            <Link to="/" className={navLinkText}>
-              Home
-            </Link>
-          </li>
-          <li className={navLinkItem}>
-            <Link to="/about" className={navLinkText}>
-              About
-            </Link>
-          </li>
-          <li className={navLinkItem}>
-            <Link to="/blog" className={navLinkText}>
-              Blog
-            </Link>
-          </li>
-        </ul>
-      </nav>
-      <main>
-        <h1 className={heading}>{pageTitle}</h1>
-        {children}
-      </main>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Container>
+        <title>{title}</title>
+
+        <BlogMenu />
+
+        <Box square mt={2}>
+          <Paper square className={classes.paperContainer}>
+            <Typography variant="h4">{pageTitle}</Typography>
+            {children}
+          </Paper>
+        </Box>
+      </Container>
+    </ThemeProvider>
   )
 }
 

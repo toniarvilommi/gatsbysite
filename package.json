@@ -15,11 +15,14 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/styles": "^4.11.4",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
     "gatsby": "^4.7.2",
     "gatsby-plugin-flow": "^3.7.0",
     "gatsby-plugin-image": "^2.7.0",
+    "gatsby-plugin-material-ui": "^4.1.0",
     "gatsby-plugin-mdx": "^3.7.1",
     "gatsby-plugin-sharp": "^4.7.0",
     "gatsby-source-filesystem": "^4.7.0",
